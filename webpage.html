@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My profile</title>
+    <link href="./webpage_files/bootstrap.css" type="text/css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        type="text/css" />
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js" type="text/javascript"
+        language="javascript"></script>
+
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script> -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/5.2.3/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="style.css">
+    <script type="text/javascript">
+        var $FNameLNameRegEx = /^([a-zA-Z]{2,20})$/;
+        var $FullNameRegEx = /^([a-zA-Z ]{2,40})$/;
+        var $BankAccountNameRegEx = /^([a-zA-Z ]{2,60})$/;
+        var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,12}$/;
+
+        var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
+        var $ConNoRegEx = /^([0-9]{10})$/;
+        var $AgeRegEx = /^([0-9]{1,2})$/;
+        var $AadhaarNoRegEx = /^([0-9]{12})$/;
+        var $GSTNoRegEx = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+        var $IndianDrivingLicenseNoRegEx = /^([A-Z]{2,3}[-/0-9]{8,13})$/;
+        var $IndianVehicleRegNoRegEx = /^([A-Z]{2}[0-9]{1,2}[A-Z]{1,3}[0-9]{1,4})$/;
+        var $PincodeRegEx = /^[1-9][0-9]{5,6}$/;
+        var $PANNoRegEx = /^[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]$/;
+        var $IFSCCodeRegEx = /^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/;
+        var $BankAccountNoRegEx = /^([0-9]{9,18})$/;
+        var $LatitudeLongitude = /^(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,8})?|180(?:\.0{1,8})?)$/;
+
+
+        $(document).ready(function () {
+
+            $("#txtfirstname").blur(function () {
+                $("#TxtfirstnameValidate").empty();
+                if ($(this).val().trim() == "" || $(this).val().trim() == null) {
+                    $("#TxtfirstnameValidate").html("(*)Please enter firstname");
+                }
+                else {
+                    if (!$(this).val().trim().match($FNameLNameRegEx)) {
+                        $("#TxtfirstnameValidate").html("(*)Invalid firstname");
+                    }
+                }
+            });
+
+            $("#txtfirstname").keypress(function (e) {
+                var ASCIIValue = e.which, Flag = false;
+                $("#TxtfirstnameValidate").empty();
+
+                ((ASCIIValue >= 65 && ASCIIValue <= 90) || (ASCIIValue >= 97 && ASCIIValue <= 121))
+                    ? (Flag = true)
+                    : ($("#TxtfirstnameValidate").html("(*)Invalid input"), Flag = false);
+
+                return Flag;
+            });
+
+            $("#txtlast").blur(function () {
+                // alert("Please enter last")
+                if ($(this).val().trim() == "") {
+                    $("#TxtLastValidate").html("(*)Please enter lastname");
+                }
+                else {
+                    if (!$(this).val().trim().match($FullNameRegEx)) {
+                        $("#TxtLastnameValidate").html("(*)Invalid lastname");
+                    }
+                }
+            });
+
+            $("#txtlast").keypress(function (e) {
+                var ASCIIValue = e.which, Flag = false;
+                $("#TxtLastValidate").empty();
+
+                ((ASCIIValue >= 65 && ASCIIValue <= 90) || (ASCIIValue >= 97 && ASCIIValue <= 121))
+                    ? (Flag = true)
+                    : ($("#TxtLastValidate").html("(*)Invalid input"), Flag = false);
+
+                return Flag;
+            });
+
+
+            $("#txtEmail").blur(function () {
+                // alert("Please enter last")
+                if ($(this).val().trim() == "") {
+                    $("#TxtEmailValidate").html("(*)Please enter Email");
+                }
+                else {
+                    if (!$(this).val().trim().match($EmailIdRegEx)) {
+                        $("#TxtEmailValidate").html("(*)Invalid Emailid");
+                    }
+                }
+            });
+
+            $("#TxtContactNo").blur(function () {
+                // alert("Please enter last")
+                if ($(this).val().trim() == "") {
+                    $("#TxtContactNoValidate").html("(*)Please enter Email");
+                }
+                else {
+                    if (!$(this).val().trim().match($ConNoRegEx)) {
+                        $("#TxtContactNoValidate").html("(*)Invalid Emailid");
+                    }
+                }
+            });
+
+            $("#TxtContactNo").keypress(function (e) {
+                var ASCIIValue = e.which, Flag = false;
+                $("#TxtContactNoValidate").empty();
+
+                ((ASCIIValue >= 48 && ASCIIValue <= 57))
+                    ? (Flag = true)
+                    : ($("#TxtContactNoValidate").html("(*)Invalid input"), Flag = false);
+
+                return Flag;
+            });
+       
+        var fname = false, lname = false, email = false, phone = false;
+        $("#BtnCreateNewAccount").click(function () {
+            $("#TxtfirstnameValidate").empty();
+            if ($("#txtfirstname").val().trim() == "") {
+                $("#TxtfirstnameValidate").html("(*)firstname required!");
+                fname = false;
+            }
+            else {
+                if(!$("#txtfirstname").val().trim().match($FNameLNameRegEx)){
+                    $("#TxtfirstnameValidate").html("(*)Invalid firstname");
+                    fname = false;
+                }
+                else {
+                    fname = true;
+                }
+            }
+            $("#TxtLastValidate").empty();
+            if ($("#txtlast").val().trim() == "") {
+                $("#TxtLastValidate").html("(*)lastname required!");
+                lname = false;
+            }
+            else {
+                if (!$("#txtlast").val().trim().match($FNameLNameRegEx)) {
+                    $("#TxtLastValidate").html("(*)Invalid lastname");
+                    lname = false;
+                }
+                else {
+                    lname = true;
+                }
+            }
+
+            $("#TxtEmailValidate").empty();
+            if ($("#txtEmail").val().trim() == "" ) {
+                $("#TxtEmailValidate").html("(*)Emailid required!");
+                email = false;
+            }
+            else {
+                if (!$("#txtEmail").val().trim().match($EmailIdRegEx)) {
+                    $("#TxtEmailValidate").html("(*)Invalid emailid!");
+                    email = false;
+                }
+                else {
+                    email = true;
+                }
+            }
+
+            $("#TxtContactNoValidate").empty();
+            if($("#TxtContactNo").val().trim() == "" ) {
+                $("#TxtContactNoValidate").html("(*)contact no. required!");
+                phone = false;
+            }
+            else {
+                if(!$("#TxtContactNo").val().trim().match($ConNoRegEx)){
+                    $("#TxtContactNoValidate").html("(*)Invalid contact no.!");
+                    phone = false;
+                }
+                else {
+                    phone = true;
+                }
+            }
+
+            if(fname == lname == phone == email == true){
+                alert("Form submitted Successfully!");
+            }
+            else{
+                alert("Invalid form inputs!");
+            }
+        });
+    });
+    </script>
+
+
+
+
+</head>
+
+<body>
+    <div>
+        <nav role="navigation" class="navbar navbar-inverse navbar-fixed-top" style="z-index:1000;">
+             <!-- Brand and toggle get grouped for better mobile display -->
+             <div class="navbar-header" id="HeaderDiv">
+                  <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                          <span class="icon-bar"></span>
+                  </button>
+                  <a href="#" class="navbar-brand">Dhruvi Panchal</a>
+             </div>
+             <div id="navbarCollapse" class="collapse navbar-collapse">
+                  <ul class="nav navbar-nav navbar-right" style="font-size:13px;padding-right:15px;">
+                      <li><a href="#Home"><b>Home</b></a></li>
+                      <li><a href="#TechnicalSummary"><b>Technical Summary</b></a></li>
+                      <li><a href="#Qualifications"><b>Qualifications</b></a></li>
+                      <li><a href="#skill"><b>skills</b></a></li>
+                      <!-- <li><a href="#Noncollegiate"><b>Noncollegiate</b></a></li>
+                      <li><a href="#Experience"><b>Experience</b></a></li> -->
+                      <!-- <li><a href="#Portfolio"><b>Portfolio</b></a></li> -->
+                      <li><a href="#contactus"><b>Contact us</b></a></li>
+                  </ul>
+            </div>
+       </nav>
+    </div>	
+
+    <div id="Home" class="fullscreen_bg">
+         <video src="videos/v1.mp4" autoplay loop muted class="fullscreen_bg_video"></video>
+         <div class="row" id="HomeRow">
+              <div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-2 col-lg-6 col-md-6 col-sm-8 col-xs-12 wow slideInDown" data-wow-duration="3s">
+                   <center><img src="Images/I1.jpg" alt="Dhruvi Panchal" style="width:200px"/></center>
+                   <center><h2>I'M Dhruvi Panchal</h2></center>
+                   <center><h5>work in investis Digital</h5><hr /></center>
+                   <div class="row">
+                       <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-5 col-md-5 col-sm-5">
+                            <center><i class="fa fa-2x fa-phone"></i> +91- 9265339442</center>
+                       </div>
+                       <div class="col-lg-5 col-md-6 col-sm-6">
+                            <center><i class="fa fa-2x fa-envelope"></i> <a href="mailto:abhishekpoojara@gmail.com" style="color:#ffffff;">dhruvipanchal@gmail.com</a></center>
+                       </div>
+                   </div><hr />
+                   <div class="row">
+                       <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
+                            <center><i class="fa fa-2x fa-map-marker"></i> Sky9 I.T. Craft,Shubham Complex, University Road, Rajkot - 360005.</center>
+                       </div>
+                   </div><hr />
+                   <center><a href="#"><i class="fa fa-2x fa-facebook-square"></i></a> &nbsp;<a href="#"><i class="fa fa-2x fa-twitter-square"></i></a> &nbsp;<a href="#"><i class="fa fa-2x fa-linkedin-square"></i></a> &nbsp;<a href="#"><i class="fa fa-2x fa-instagram"></i></a></center>
+              </div>
+         </div>
+    </div>
+    
+    <div id="TechnicalSummary" class="container-fluid wow bounceIn" data-wow-duration="3s">
+        <div class="row" id="TechnicalSummaryRow">
+             <div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-10 col-md-10 col-sm-10">
+                  <h1 class="text-center"><i class="fa fa-gears"></i> Technical Summary</h1><hr />
+                  <ul>
+                      <li>An Information & Technology Engineer graduated from R. K. College Of Engineering And Technology – Saurashtra University and having overall 5 years of extensive experience in developing web applications (C# ASP .Net) & Android mobile applications.</li>
+                      <li>Core expertise in Web designing by using HTML To HTML5, CSS To CSS3, JavaScript – JQuery,Bootstrap, work with different kinds of API’s & Third-party Tools (.DLL), SEO & Digital marketing.</li>
+                      <li>In database used for Web application development expertise in MS Sql Server & MS Access in Mobile application development SQLite DB. Also aware with JSON & XML data formats.</li>
+                      <li>Also aware and working with latest cross platform mobile application development framework. I specifically work on IONIC (based on CORDOVA, Node JS and Angular JS plug-ins & as an editor (VS-CODE).</li>
+                      <li>In present web application development technology focus is on Angular JS.</li>
+                      <li>A Software Associate Analyst grown I.T. Engineer having great experience with all the stages of SDLC including designing, developing, testing and rolling out complex Web & Mobile Applications.</li>
+                      <li>Result oriented, self driven, highly motivated, smart and hungry to learn new technologies, methodologies, strategies and processes. </li>
+                  </ul>
+             </div>
+        </div>
+   </div>
+
+   <div id="Qualifications" class="container-fluid">
+    <div class="qulification" id="qulificationrow">
+        <div class="box col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-lg-6 col-md-6 col-sm-6 wow slideInLeft">
+            <h2 class="text-center"><i class="fa fa-object-group"></i>Qualifications</h2><hr/>
+            <table class="table table-responsive">
+                <tr>
+                    <td>Year<br />2018 - 2021</td>
+                    <td>b.sc in Mathematics<br /> from The maharaja sayajirao university of baroda <br />m.s University <br /> (Throughout First Class).</td>
+                </tr>
+                <tr>
+                    <td>Year<br />2017 - 2018</td>
+                    <td>10+2 with Mathematics, <br />from Vishwabharti vidhyalaya,<br /> G.S.E.B. board.<br /> with 61.84% marks.</td>
+                </tr>
+                <tr>
+                    <td>Year<br />2015 - 2016</td>
+                    <td>High School <br /> from s.b solanki vidhyamandir, <br /> G.S.E.B. board.<br /> with 81.5% marks.</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+   </div>
+
+   <div id="skill" class="container-fluid">
+    <div class="skill" id="skillrow">
+        <div class="box col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-lg-6 col-md-6 col-sm-6 wow slideInRight" data-wow-duration="3s">
+        <h2><i class="fa fa-object-group"></i> Technical Skills</h2><hr/>
+        <table>
+            <tr>
+                <td>Programming languages</td>
+                <td>javascript,java,C,C++,python,dotnet</td>
+            </tr>
+            <tr>
+                <td>Tools and technologies</td>
+                <td>Microsoft .Net (Specifically ASP .Net), ADO .Net, WPF, WCF, Android Mobile Application, Picomos Photo Creator, Angular JS etc.Microsoft .Net (Specifically ASP .Net), ADO .Net, WPF, WCF, Android Mobile Application, Picomos Photo Creator, Angular JS etc</td>
+            </tr>
+            <tr>
+                <td>database:</td>
+                <td>mysql,plsql,queris</td>
+            </tr>
+            <tr>
+                <td>database:</td>
+                <td>mysql,plsql,queris</td>
+            </tr>
+            <tr>
+                <td>protocols:</td>
+                <td>SMTP,FTP,PO3</td>
+            </tr>
+            <tr>
+                <td>companies:</td>
+                <td>1,2,3,4,56</td>
+            </tr>
+            <tr>
+                <td>others:</td>
+                <td>multithreading,js,asp,api,oops,sdlc</td>
+            </tr>
+
+        </table>
+        </div>
+    </div>
+
+   </div>
+   <div id="contactus" >
+        <div class="row" id="contactus">
+            
+            <div class="box col-xs-12 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4 col-lg-offset-4 col-lg-4">
+                <h3 class="text-center"><i class="fa fa-user-plus"></i>Create New Account
+                    <hr />
+                </h3>
+                <div class="form-group">
+                    <b>Firstname:</b>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="txtfirstname" placeholder="Enter Firstname here..." maxlength="20"
+                            class="form-control" />
+                    </div>
+                    <small class="text-danger" id="TxtfirstnameValidate"></small>
+                </div>
+                <div class="form-group">
+                    <b>Lastname:</b>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" id="txtlast" placeholder="Enter lastname here..." maxlength="20"
+                            class="form-control" />
+                    </div>
+                    <small class="text-danger" id="TxtLastValidate"></small>
+                </div>
+                <div class="form-group">
+                    <b>Emailid:</b>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <input type="text" id="txtEmail" placeholder="Enter Emailid here..." maxlength="50"
+                            class="form-control" />
+
+                    </div>
+                    <small class="text-danger" id="TxtEmailValidate"></small>
+                </div>
+                <div class="form-group">
+                    <b><i class="fa fa-phone"></i>Contact.:</b>
+                    <div class="input-group">
+                        <span class="input-group-addon">+91</span>
+                        <input type="text" id="TxtContactNo" placeholder="Enter Contact here..." maxlength="10"
+                            class="form-control" />
+
+                    </div>
+                    <small class="text-danger" id="TxtContactNoValidate"></small>
+                </div>
+                <div class="form-group">
+                    <b>Gender:</b>
+                    <div class="input-group">
+                        <!-- <span class="input-group-addon"><i class="fa fa-male"> | <i class="fa fa-female"></i></span> -->
+                        <span class="input-group-addon"><i class="fa fa-male"></i> | <i class="fa fa-female"></i>
+                        </span>
+                        <select id="DDL_Gender" class="form-control">
+                            <option value="M">Male</option>
+                            <option value="F">Female</option>
+                        </select>
+                    </div>
+                    <small class="text-danger" id="DDL_Gender"></small>
+                </div>
+                <div class="form-group">
+                    <a class="btn btn-primary" id="BtnCreateNewAccount"><i style="color: white;"></i>Submit</a>
+                </div>
+            </div>
+        </div>
+   </div>
+</body>
+
+</html>
